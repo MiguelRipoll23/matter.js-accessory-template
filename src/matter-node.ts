@@ -1,6 +1,7 @@
 import "@project-chip/matter-node.js";
 
 import { requireMinNodeVersion } from "@project-chip/matter-node.js/util";
+import { NODE_CONFIGURATION } from "./configuration/node-configuration.js";
 import { logEndpoint } from "@project-chip/matter.js/device";
 import { EndpointServer } from "@project-chip/matter.js/endpoint";
 import { ServerNode } from "@project-chip/matter.js/node";
@@ -9,21 +10,8 @@ import { Switch2Endpoint } from "./endpoints/Switch2/switch2-endpoint.js";
 
 requireMinNodeVersion(16);
 
-export const ENDPOINT_ID = "matter-node";
-export const PRODUCT_NAME = "My Matter Node";
-
 async function main() {
-  const server = await ServerNode.create({
-    id: ENDPOINT_ID,
-    productDescription: {
-      name: PRODUCT_NAME,
-    },
-    basicInformation: {
-      nodeLabel: PRODUCT_NAME,
-      productName: PRODUCT_NAME,
-      productLabel: PRODUCT_NAME,
-    },
-  });
+  const server = await ServerNode.create(NODE_CONFIGURATION);
 
   await addEndpointsToServer(server);
 
