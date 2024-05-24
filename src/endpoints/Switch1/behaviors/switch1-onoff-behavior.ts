@@ -12,7 +12,7 @@ export class Switch1OnOffBehavior extends OnOffLightRequirements.OnOffServer {
   }
 
   override initialize() {
-    this.events.onOff$Change.on((value) => {
+    this.events.onOff$Changed.on((value) => {
       console.log(`Switch 1 is now ${value ? "ON" : "OFF"}`);
     });
   }
